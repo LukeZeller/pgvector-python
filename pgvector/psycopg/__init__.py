@@ -61,9 +61,9 @@ def register_vector(context):
 
 
 async def async_register_vector(async_context):
-    info = TypeInfo.fetch(async_context, "vector")
+    info = await TypeInfo.fetch(async_context, "vector")
     if info is None:
         raise psycopg.ProgrammingError("vector type not found in the database")
-    await info.register(async_context)
+    info.register(async_context)
 
     _register_vector_adapters(async_context)
